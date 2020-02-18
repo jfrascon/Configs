@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=KBLMS_customized
+Name[en_US]=customized_keyboard_layout_and_mouse_scrolling.desktop
+Comment=Customized keyboard layout and mouse scrolling
+#Exec=change_kblayout_ms.sh customized interactive
+Exec=pkexec /home/juan.rascon/bin/change_keyboard_layout_and_mouse_scrolling.sh customized
+Icon=/usr/share/icons/hicolor/scalable/apps/recommended-driver.svg
+Terminal=true
+Type=Application
+Categories=Utility;Application;

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=GDrive
+Name[en_US]=GDrive
+Comment=Google Drive
+Exec=/usr/bin/google-drive-ocamlfuse /home/juan.rascon/GDrive
+Icon=/home/juan.rascon/Pictures/Icons/GDrive.svg
+Terminal=true
+Type=Application
+Categories=Utility;Application;

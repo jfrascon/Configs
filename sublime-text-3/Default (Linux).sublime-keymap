@@ -1,0 +1,5 @@
+// Place this file in ~/.config/sublime-text-3/Packages/User/
+[
+	{ "keys": ["ctrl+7"], "command": "toggle_comment", "args": { "block": false } },
+	{ "keys": ["ctrl+shift+7"], "command": "toggle_comment", "args": { "block": true } }
+]

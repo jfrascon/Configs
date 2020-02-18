@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=KBLMS_default
+Name[en_US]=default_keyboard_layout_and_mouse_scrolling.desktop
+Comment=Default keyboard layout and mouse scrolling
+#Exec=change_kblayout_ms.sh default interactive
+Exec=pkexec /home/juan.rascon/bin/change_keyboard_layout_and_mouse_scrolling.sh default
+Icon=/usr/share/icons/hicolor/scalable/apps/disable-device.svg
+Terminal=true
+Type=Application
+Categories=Utility;Application;
