@@ -1,0 +1,51 @@
+# The path variable does not need to be exported in this script.
+# It is exported in the script .bash_profile that sources this script.
+# You just add a value to the PATH variable normally, w.o export.
+# Example:
+# PATH="/any/path:$PATH"
+
+PATH="/usr/bin:$PATH"
+PATH="/usr/sbin:$PATH"
+PATH="/bin:$PATH"
+PATH="/sbin:$PATH"
+PATH="/usr/local/bin:$PATH"
+PATH="/usr/local/sbin:$PATH"
+PATH="/usr/local/git/bin:$PATH"
+PATH="/usr/local/opt/sqlite/bin:$PATH"
+PATH="/usr/local/opt/openssl/bin:$PATH"
+#PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH";
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# Set Man Pages
+#MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+#PATH="$(brew --prefix findutils)/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+#MANPATH="$(brew --prefix findutils)/libexec/gnuman:$MANPATH"
+MANPATH="/usr/local/opt/findutils/libexec/gnuman:$MANPATH"
+PATH="/usr/local/opt/m4/bin:$PATH"
+PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+PATH="/usr/local/opt/unzip/bin:$PATH"
+PATH="/usr/local/opt/gettext/bin:$PATH"
+PATH="/usr/local/opt/curl/bin:$PATH"
+PATH="/usr/local/opt/icu4c/bin:$PATH"
+
+#PATH=/usr/local/anaconda3/bin:"$PATH"
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+if [ -f /usr/local/share/bash-completion/bash_completion ]; then
+    . /usr/local/share/bash-completion/bash_completion
+fi
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+export MANPATH
+export JAVA_HOME="$(/usr/libexec/java_home)"
+export GTAGSCONF="$HOME/.gtags.conf" # gtags using ctags as a backend
+export GTAGSLABEL="new-ctags"

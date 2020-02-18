@@ -1,0 +1,4 @@
+--color
+--color-match=on_white
+--color-filename=red
+--color-lineno=yellow

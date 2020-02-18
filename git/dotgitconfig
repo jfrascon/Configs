@@ -1,0 +1,93 @@
+# FIRST:  CLI COMMANDS
+# ===== ===== ===== ===== =====
+# SECOND: CONFIG WITH THE PROPER VALUES FOR GIT TO WORK.
+
+#git config --global user.name "Frank Rascon"
+#git config --global user.email "juan.rascon@eurecat.org"
+
+#git config --global core.editor "subl --wait --new-window"
+#git config --global core.editor “atom --wait”
+#git config --global core.editor “nano -w”
+#git config --global core.editor "vim"
+
+#git config --global core.filemode false
+#git config --global core.excludesfile ".gitignore_global"
+
+#git config --global push.default matching
+
+#git config --global merge.conflictstyle diff3
+#git config --global merge.tool vimdiff
+#git config --global mergetool.prompt false
+
+#git config --global color.status.added yellow
+#git config --global color.status.changed green
+#git config --global color.status.untracked red
+
+#git config --global color.branch.current 'yellow reverse'
+#git config --global color.branch.local yellow
+#git config --global color.branch.remote green
+
+#git config --global color.diff.meta 'yellow bold'
+#git config --global color.diff.frag 'magenta bold'
+#git config --global color.diff.old 'red bold'
+#git config --global color.diff.new 'green bold'
+
+#git config --global color.ui auto
+#git config --global color.interactive auto
+
+#git config --global credential.helper osxkeychain
+#git config --global credential.helper cache
+# Set the cache to timeout after 2 hour (setting is in seconds)
+#git config --global credential.helper 'cache --timeout=7200'
+
+#git config --global alias.co checkout
+#git config --global alias.last 'log -1 HEAD'
+#git config --global alias.lg  'log --graph --all --decorate'
+#git config --global alias.lg  'log --graph --all --decorate --oneline'
+#git config --global alias.lga 'log --graph --all --pretty=format:"%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cr)%Creset %C(green)%an%Creset %s"'
+
+# ===== ===== ===== ===== =====
+
+[user]
+	name = Frank Rascon
+	#email = jfrascon@gmail.com
+        email = juan.rascon@eurecat.org
+[core]
+	#editor = atom --wait
+	#editor = nano -w
+	#editor = subl --wait --new-window
+	editor = nvim # for me 'vim' is an alias for 'nvim' usually
+	filemode = false
+	excludesfile = .gitignore_global
+[push]
+	default = matching
+[merge]
+	conflictstyle = diff3
+	tool = vimdiff
+[mergetool]
+	prompt = false
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = red
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color]
+	ui = auto
+	interactive = auto
+[alias]
+	co = checkout
+	last = log -1 HEAD
+	lg = log --graph --all --decorate
+	lga = log --graph --all --pretty=format:\"%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cr)%Creset %C(green)%an%Creset %s\"
+	[credential]
+	helper = cache --timeout=7200
+	#helper = cache
+	#helper = osxkeychain

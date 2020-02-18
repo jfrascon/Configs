@@ -1,0 +1,41 @@
+127.0.0.1   localhost
+127.0.1.1   CL-JFRASCON
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+# +==============+
+# | TEAM MEMBERS |
+# +==============+
+# 192.168.X.102 CL-CRIZZO
+# 192.168.X.107 CL-JFRASCON
+# 192.168.X.111 CL-MSANCHES
+#
+192.168.2.102   CL-CRIZZO
+192.168.2.111   CL-MSANCHES
+
+# +=============+
+# | WORKSTATION |
+# +=============+
+192.168.1.5     CW-GSTATION
+
+# +===================+
+# | LOGIMATIC PROJECT |
+# +===================+
+
+#192.168.1.2    logimatic-desktop #OBU
+#192.168.1.150  UBLOX_MOXA
+#192.168.1.152  SARX4 # Septentrio AstenRx4
+
+# +=============+
+# | HUSKY ROBOT |
+# +=============+
+192.168.2.20    HUSKY-PC
+
+
+
+
