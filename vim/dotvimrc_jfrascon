@@ -1,0 +1,345 @@
+" Check this from time to time
+" https://github.com/changemewtf/no_plugins/blob/master/no_plugins.vim
+
+set nocompatible
+"Enable indentation rules that are file-type specific.
+filetype plugin indent on
+
+" For VIM in ALL OSes and NEOVIM WINDOWS (PowerShell)
+" ---------------------------------------------------
+" Install vim-plug if we don't already have it
+" Note that --sync flag is used to block the execution until the installer finishes.
+"if empty(glob('~/.vim/autoload/plug.vim'))
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
+
+" For NEOVIM in UNIX
+" ------------------
+" Install vim-plug if we don't already have it
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+" Git from within Vim
+Plug 'tpope/vim-fugitive'
+" Friendly three- way merge
+Plug 'tpope/vim-unimpaired'
+"Plug 'tpope/vim-vinegar' " Use with netrw
+" Show git status in the gutter
+Plug 'airblade/vim-gitgutter'
+" Markdown support in Vim'
+Plug 'plasticboy/vim-markdown'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'rondale-sc/vim-spacejam'
+Plug 'craigemery/vim-autotag'
+Plug 'majutsushi/tagbar'
+Plug 'Valloric/MatchTagAlways'
+"Plug 'ludovicchabant/vim-gutentags
+Plug 'dracula/vim',{'as': 'dracula'}
+"Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
+
+"function! BuildYCM(info)
+" info is a dictionary with 3 fields
+" - name: name of the plugin
+" - status: 'installed', 'updated', or 'unchanged'
+" - force: set on PlugInstall! or PlugUpdate!
+"if a:info.status == 'installed' || a:info.force
+"!./install.py --clang-completer
+"endif
+"endfunction
+
+"Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
+
+call plug#end()
+
+" Customise netrw (file browser embedded in vim)
+"let g:netrw_banner = 0        " disable annoying banner
+"let g:netrw_liststyle = 3     " tree view
+"let g:netrw_browse_split = 4  " open in prior window
+"let g:netrw_altv = 1          " open splits to the right
+"let g:netrw_list_hide=netrw_gitignore#Hide()
+"let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+let g:airline_theme = 'term'
+"let g:airline_theme = 'solarized'
+"let g:airline_solarized_bg = 'dark'
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+" Originally there was a %m where now there is a %F
+"let g:airline_section_c = '%<%<%{airline#extensions#fugitiveline#bufname()}%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
+"let g:loaded_python_provider=1
+let g:python_host_prog  = '/usr/bin/python'
+"let g:loaded_python3_provider = 1
+let g:python3_host_prog  = '/usr/bin/python3'
+"let g:python3_host_prog  = 'C:\Users\jfrascon\AppData\Local\Programs\Python\Python37\python'
+
+" Don’t update screen during macro and script execution.
+set lazyredraw
+
+if &term == 'screen'
+    set t_Co=256
+endif
+
+set encoding=utf-8
+
+" If there are problems with the encoding in terminador you should use this
+" https://github.com/neovim/neovim/issues/5999
+set guicursor=
+
+syntax on
+" If I use color dracula I don't have to use 
+" set background=dark, because this last line
+" overrides the line color dracula
+color dracula 
+"color monokai
+"set background=dark
+
+" Autoindent essentially tells vim to apply the indentation of the current line to the next (created by pressing enter in insert mode or with O or o in normal mode.
+set autoindent
+" Smartindent reacts to the syntax/style of the code you are editing (especially for C). When having it on you also should have autoindent on.
+set smartindent  
+
+" Backckspace works in Insert mode (e.g. not inserting a ^?), but won't delete over line breaks, or automatically-inserted indentation, or the place where insert mode started.
+" Use `set backspace=2` to make backspace work like most other programs
+" Alternately, add this to your .vimrc:
+set backspace=indent,eol,start
+
+" Line wrapping
+" Example of using options for some buffers
+" setlocal nowrap or setlocal wrap
+set wrap
+" Avoid wrapping a line in the middle of a word
+set linebreak
+
+"https://neovim.io/doc/user/provider.html
+"Clipboard integration  *provider-clipboard* *clipboard*
+"
+"Nvim has no direct connection to the system clipboard. Instead it depends on
+"a |provider| which transparently uses shell commands to communicate with the
+"system clipboard or any other clipboard backend.
+"To ALWAYS use the clipboard for ALL operations (instead of interacting with
+"the '+' and/or '*' registers explicitly):
+set clipboard=unnamedplus,unnamed
+
+" Press the tab key in the insert mode insert space character instead of tabs
+" characters
+set expandtab
+" How many columns a tab counts for. Because I set expandtab, every time I
+" press the Tab key 4 space characters are inserted"
+set tabstop=4
+" If you are using expandtab, then you need to set softtabstop if you want vim
+" to backspace multiple spaces. If expandtab is set and softtabstop is not
+" set, then if you hit the Tab key 4 space characters are inserted, but when
+" pressing the backspace only one space character is going to be removed.
+set softtabstop=4
+" How many columns the text is indented with the reindent (commands << and >>)
+" operations (>>, <<)
+set shiftwidth=4
+
+set hlsearch          " Highlight searches
+set ignorecase        " Ignore case in searches
+set incsearch         " Set up incremental search (as you type)
+" Automatically switch search to case-sensitive when search query contains an uppercase letter.
+" Use example:
+" /copyright      " Case insensitive => searches for copyright, Copyright, copyRight, ...
+" /Copyright      " Case sensitive   => searches for Copyright
+" /copyright\C    " Case sensitive   => searches for copyright
+" /Copyright\c    " Case insensitive => same as the first one
+set smartcase
+
+" Hybrid linenumber
+" relativenumber can be slow over SSH connections
+set number relativenumber
+
+"The 'scrolloff' (scroll offset) option determines the number of context lines you would like to see above and below the cursor.
+"The following command scrolls the text so that (when possible) there are always at least five lines visible above the cursor,
+"and five lines visible below the cursor
+set scrolloff=5
+
+" Show typed command in status bar
+" set showcmd
+
+set showcmd
+
+set wrapscan
+
+" Search down into subfolders.
+" Provides tab completion for all file-related tasks.
+set path+=**
+" Display all matching files when we tab complete.
+set wildmenu
+set wildmode=list:longest,full
+" Ignore files or folders
+" set wildignore+=
+set modelines=0
+set hidden
+set splitright
+
+
+let &showbreak= '^'
+" Use the same symbols as TextMate for tabstops and EOLs
+"set listchars=tab:▸\,eol:¬
+"
+"set listchars=space:·,tab:»»,extends:>,precedes:<,nbsp:~,trail:_,eol:¶
+set listchars=tab:»»,extends:>,precedes:<,nbsp:~,trail:_,eol:¶
+set list
+" Display underline below cursor, only in current window
+" set cursorline
+set matchpairs+=<:>
+" Show matching bracket for 0.2 seconds
+set matchtime=2
+" Enable mouse
+set mouse=a
+
+"set textwidth=100
+
+" Show matching brackets when typing in insert mode(briefly jump)
+set showmatch
+
+" Scroll two panes together (use when using vimdiff)
+" set scrollbind
+" Any text pasted from your system clipboard in insert mode will be entered as-is
+" without additional indentation rules applied
+set nopaste
+
+" ctags optimization
+set tags=tags;
+
+set swapfile               " Swap files. The *.ext.swp file is the swap file, which serves
+                           " as a lock file and contains the undo/redo history as well as
+                           " any other internal info Vim needs. In case of a crash you can
+                           " re-open your file and Vim will restore its previous state from
+                           " the swap file.
+set dir=~/.vim/swap         " Directory to store swap files
+set backup                 " Backup files The *.ext~ file is a backup file, containing the
+                           " file as it was before you edited it.
+set backupdir=~/.vim/backup
+set undofile               " undo information won't be lost when quitting Vim and be stored
+                           " in a file that ends with .un~
+set undodir=~/.vim/undo
+set undolevels=1000
+set history=1000
+
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim   
+" When a file has been detected to have been changed outside of Vim and it has not been changed inside of Vim,
+" automatically read it again. When the file has been deleted this is not done.
+" This answer adds a caveat:
+" Autoread does not reload file unless you do something like run external command (like !ls or !sh etc)
+set autoread
+" SOLUTIONS TO THE PREVIOUS CAVEAT
+" --------------------------------
+"1. Trigger when cursor stops moving
+au CursorHold,CursorHoldI * checktime
+" 2. Trigger when cursor stops moving: 
+" By default, CursorHold is triggered after the cursor remains still for 4 seconds,
+" and is configurable via updatetime.
+" Trigger on buffer change or terminal focus (trigger autoread when changing buffers while inside vim)
+" Catching terminal window focus inside plain vim
+" To have FocusGained work in plain vim, inside a terminal emulator (Xterm, tmux, etc) install the plugin:
+" `vim-tmux-focus-events`
+" On tmux versions > 1.9, you'll need to add in .tmux.conf: `set -g focus-events on`
+" ==>> au FocusGained,BufEnter * :checktime
+
+" STATUS BAR
+"
+" Use 2 lines for the status bar
+"set laststatus=2
+"set statusline=%F       "tail of the filename
+"set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
+"set statusline+=%{&ff}] "file format
+"set statusline+=%h      "help file flag
+"set statusline+=%m      "modified flag
+"set statusline+=%r      "read only flag
+"set statusline+=%y      "filetype
+"set statusline+=%=      "left/right separator
+"set statusline+=%c,     "cursor column
+"set statusline+=%l/%L   "cursor line/total lines
+"set statusline+=\ %P    "percent through file
+" Show cursor position in status bar
+" set ruler
+" Show mode in status bar (insert/replace/...)
+" set showmode
+" Show file in titlebar
+" set title
+
+let mapleader = "\<Space>"
+"let mapleader = "ñ"
+" The local leader is meant to be a prefix for mappings that only
+" take effect for certain types of files, like Python, HTML, etc.
+let maplocalleader = "_"
+
+nnoremap <leader>nt :NERDTreeTabsToggle<CR>
+nmap <F9> :TagbarToggle<CR>
+
+nnoremap j gj
+nnoremap k gk
+nnoremap <down> gj
+nnoremap <up> gk
+
+vnoremap j gj
+vnoremap k gk
+vnoremap <down> gj
+vnoremap <up> gk
+
+inoremap <down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+nnoremap <leader>e :ene<cr>
+nnoremap <leader>hh :bp<cr>
+nnoremap <leader>ll :bn<cr>
+nnoremap <leader>q :bd<cr>
+nnoremap <leader>Q :bd!<cr>
+nnoremap <leader>bf :ls<cr>:buffer<space>
+nnoremap <leader>o :only<cr>
+"nnoremap <leader>t <C-]>
+nnoremap <leader><leader> <C-w><C-w>
+nnoremap <leader><C-t> :tabnew<cr>
+nnoremap <leader>tp :tabp<cr>
+nnoremap <leader>tn :tabn<cr>
+nnoremap <leader><C-w> :tabclose<cr>
+
+" Friendly copy-paste
+" register * uses the 'primary' clipboard (for copy-on-select) : "*y, "*p
+" register + uses the 'normal-system' clipboard (the one used with ^C) "+y, "+p
+imap <a-p> <esc>"*p
+
+" This shortcut exits the insert mode, and sets back the normal mode.
+inoremap ,, <esc>
+
+" Resize windows
+nnoremap <leader>h- :exe "resize " . (winheight(0) * 90/100)<cr>
+nnoremap <leader>h+ :exe "resize " . (winheight(0) * 110/100)<cr>
+nnoremap <leader>w- :exe "resize " . (winwidth(0) * 90/100)<cr>
+nnoremap <leader>w+ :exe "resize " . (winwidth(0) * 110/100)<cr>
+
+" Select all text in buffer
+map <Leader>a ggVG
+
+" <Esc> now also works in terminal mode
+tnoremap <Esc> <C-\><C-n>
+"nnoremap <leader>bsd :!indent -bap -bli0 -i4 -l79 -ncs -npcs -npsl -fca -lc79 -fc1 -ts4 %<cr>
+"
+" :W sudo saves the file                                                                                  
+"command W w !sudo tee % > /dev/null
+
+set omnifunc=syntaxcomplete#Complete
+
+
+" Some notes I find useful
+" To paste text in insert mode press 'C-r +'. The 'C-r' means the paste the content of the register specified next. The '+' means the clipboard register.

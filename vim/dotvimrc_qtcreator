@@ -1,0 +1,5 @@
+" https://stackoverflow.com/a/42068342
+" map qq :qvim<CR>
+imap qq <esc>:qvim<CR>
+
+inoremap jk <esc>

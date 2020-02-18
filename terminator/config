@@ -1,0 +1,72 @@
+[global_config]
+  handle_size = 0
+  scroll_tabbar = True
+  suppress_multiple_term_dialog = True
+  title_font = DroidSansMono Nerd Font Bold 12
+  title_hide_sizetext = True
+  title_inactive_bg_color = "#282a36"
+  title_inactive_fg_color = "#f8f8f2"
+  title_receive_bg_color = "#282a36"
+  title_receive_fg_color = "#8be9fd"
+  title_transmit_bg_color = "#282a36"
+  title_transmit_fg_color = "#bd93f9"
+  title_use_system_font = False
+  window_state = maximise
+[keybindings]
+  split_horiz = <Primary><Shift>o
+[layouts]
+  [[default]]
+    [[[child1]]]
+      command = ""
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+[[default]]
+    palette = "#142631:#ff2320:#3ba5ff:#e9e75c:#8ff586:#781aa0:#8ff586:#ba46b2:#fff688:#d4312e:#8ff586:#e9f06d:#3c7dd2:#8230a7:#6cbc67:#8ff586"
+    background_color = "#142838"
+    cursor_color = "#c4206f"
+    foreground_color = "#8ff586"
+    background_image = None
+  [[Dracula]]
+    background_color = "#1e1f29"
+    copy_on_selection = True
+    cursor_blink = False
+    cursor_color = "#bbbbbb"
+    cursor_shape = underline
+    font = InconsolataGo NF 15
+    foreground_color = "#f8f8f2"
+    login_shell = True
+    palette = "#000000:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#bbbbbb:#555555:#ff5555:#50fa7b:#f1fa8c:#bd93f9:#ff79c6:#8be9fd:#ffffff"
+    scrollback_infinite = True
+    use_system_font = False
+    visible_bell = True
+  [[molokai]]
+    background_color = "#121212"
+    copy_on_selection = True
+    cursor_color = "#c20257"
+    cursor_shape = underline
+    font = SauceCodePro Nerd Font Mono 14
+    foreground_color = "#ffffff"
+    palette = "#181915:#7a0137:#498702:#c5bb63:#3465a4:#75507b:#4194b0:#d3d7cf:#45473c:#e00265:#6dca04:#e6db74:#1d71ca:#af5fff:#5cd1f8:#ffffff"
+    scrollback_infinite = True
+    use_system_font = False
+    visible_bell = True
+  [[terminator_default]]
+    background_color = "#282a36"
+    copy_on_selection = True
+    cursor_blink = False
+    cursor_color = "#bbbbbb"
+    cursor_shape = underline
+    font = InconsolataGo Nerd Font 14
+    foreground_color = "#f8f8f2"
+    login_shell = True
+    palette = "#44475a:#ff5555:#50fa7b:#ffb86c:#3465a4:#ff79c6:#f1fa8c:#44475a:#44475a:#ff5555:#50fa7b:#ffb86c:#729fcf:#ad7fa8:#f1fa8c:#44475a"
+    scroll_on_output = True
+    scrollback_infinite = True
+    use_system_font = False
+    visible_bell = True

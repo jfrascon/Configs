@@ -1,0 +1,145 @@
+if has('nvim')
+	filetype plugin indent on
+	set nocompatible
+	call plug#begin('~/.vim/plugged')
+
+	Plug 'vim-airline/vim-airline'
+	Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all' }
+	Plug 'junegunn/fzf.vim'
+	Plug 'scrooloose/nerdtree'
+	Plug 'jistr/vim-nerdtree-tabs'
+
+	"function! BuildYCM(info)
+	  " info is a dictionary with 3 fields
+	  " " - name: name of the plugin
+	  " " - status: 'installed', 'updated', or 'unchanged'
+	  " " - force: set on PlugInstall! or PlugUpdate!
+	  "if a:info.status == 'installed' || a:info.force
+	    "!./install.py --clang-completer
+	  "endif
+	"endfunction
+
+	"Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
+	call plug#end()
+
+	"let g:airline_theme = 'cobalt2'
+	let g:airline#extensions#tabline#fnamemod = ':t'
+	let g:airline#extensions#tabline#show_tab_nr = 0
+	let g:airline#extensions#tabline#show_tab_type = 0
+	let g:airline#extensions#tabline#show_close_button = 0
+	let g:airline_powerline_fonts = 1
+	let g:airline#extensions#tabline#enabled = 1
+
+"	let g_loaded_python_provider=1
+"	let g_loaded_python3_provider=1
+
+	set undofile
+	set undodir=/home/aldeasa/.vimundo
+endif
+
+if &term == "screen"
+	set t_Co=256
+endif
+
+set number
+syntax on
+colorscheme elflord
+set encoding=utf-8
+set scrolloff=9
+set nohlsearch
+set incsearch
+set ignorecase
+set smartcase
+set wildmenu
+set wildmode=list:longest,full
+set modelines=0
+set hidden
+set splitright
+set shiftwidth=2
+set tabstop=2
+set autoindent
+
+"set keywordprg=":vertical Man"
+
+"if exists('+colorcolumn')
+"  set colorcolumn=80
+"else
+"  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"endif
+
+set omnifunc=syntaxcomplete#Complete
+
+set history=1000
+set undolevels=1000
+
+let mapleader = "ñ"
+
+"
+" FZF functions
+"
+
+function! s:line_handler(l)
+  let keys = split(a:l, ':\t')
+  exec 'buf' keys[0]
+  exec keys[1]
+  normal! ^zz
+endfunction
+
+
+function! s:buffer_lines()
+  let res = []
+  for b in filter(range(1, bufnr('$')), 'buflisted(v:val)')
+    call extend(res, map(getbufline(b,0,"$"), 'b . ":\t" . (v:key + 1) . ":\t" . v:val '))
+  endfor
+  return res
+endfunction
+
+
+command! FZFLines call fzf#run({'source': <sid>buffer_lines(), 'sink': function('<sid>line_handler'), 'options': '--extended --nth=3..', 'down': '60%'})
+
+
+nnoremap <leader>h :bprevious<CR>
+nnoremap <leader>l :bnext<CR>
+nnoremap <leader>e :enew<CR>
+nnoremap <leader>q :bdelete<CR>
+nnoremap <leader>o :only<CR>
+
+nnoremap <leader>f :enew<CR>:call fzf#run({'sink': 'e', 'left': '30%'})<CR>
+nnoremap <leader>b :call fzf#run({'source': map(range(1, bufnr('$')), 'bufname(v:val)'), 'sink': 'e', 'left': '30%'})<CR>
+nnoremap <leader>g :FZFLines<CR>
+
+nnoremap <leader>d zf%
+
+nnoremap <leader>n :NERDTreeTabsToggle<CR>
+
+nnoremap <leader>t <C-]>
+
+nnoremap <leader><leader> <C-w><C-w>
+
+"nnoremap <C-t> :tabnew<CR>
+"nnoremap J :tabprevious<CR>
+"nnoremap K :tabnext<CR>
+
+function! ClipboardYank()
+  call system('xclip -i -selection clipboard', @@)
+endfunction
+function! ClipboardPaste()
+  let @@ = system('xclip -o -selection clipboard')
+endfunction
+
+vnoremap <silent> y y:call ClipboardYank()<cr>
+vnoremap <silent> d d:call ClipboardYank()<cr>
+nnoremap <silent> p :call ClipboardPaste()<cr>p
+
+function! CleverTab()
+	if strpart( getline('.'), 0, col('.')-1) =~ '^\s*$'
+		return "\<Tab>"
+	else
+		return "\<C-N>"
+	endif
+endfunction
+
+inoremap <Tab> <C-R>=CleverTab()<CR>
+
+autocmd Filetype php set keywordprg=pman
